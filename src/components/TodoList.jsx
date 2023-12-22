@@ -19,7 +19,7 @@ const TodoList = ({
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              <span className="todos__heading">Active Tasks</span>
+              <span className="todos__heading">TO-DO</span>
               {todos?.map((todo, index) => (
                 <SingleTodo
                   index={index}
@@ -39,10 +39,34 @@ const TodoList = ({
               ref={provided.innerRef}
               {...provided.droppableProps}
               className={`todos  ${
-                snapshot.isDraggingOver ? "dragcomplete" : "remove"
+                snapshot.isDraggingOver ? "dragongoing" : "remove"
               }`}
             >
-              <span className="todos__heading">Completed Tasks</span>
+              <span className="todos__heading">Ongoing</span>
+              {CompletedTodos?.map((todo, index) => (
+                <SingleTodo
+                  index={index}
+                  todos={CompletedTodos}
+                  todo={todo}
+                  key={index}
+                  setTodos={setCompletedTodos}
+                />
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+        
+        <Droppable droppableId="TodosRemove">
+          {(provided, snapshot) => (
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className={`todos  ${
+                snapshot.isDraggingOver ? "dragcomplete" : "remove2"
+              }`}
+            >
+              <span className="todos__heading bg-green-500">Completed</span>
               {CompletedTodos?.map((todo, index) => (
                 <SingleTodo
                   index={index}
