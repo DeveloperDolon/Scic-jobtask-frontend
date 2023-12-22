@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 const shuffle = (array) => {
@@ -126,7 +127,7 @@ const ShuffleGrid = () => {
 
 const ShuffleHero = () => {
     return (
-      <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 max-w-6xl mx-auto">
+      <section className="w-full px-8 py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-8 container mx-auto">
         <div>
           <span className="block mb-4 text-xs md:text-sm text-indigo-500 font-medium">
             Better every day
@@ -135,12 +136,11 @@ const ShuffleHero = () => {
             Let&apos;s change it up a bit
           </h3>
           <p className="text-base md:text-lg text-slate-700 my-4 md:my-6">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nam nobis in
-            error repellat voluptatibus ad.
+          Streamline your life with our intuitive Todo List App. Effortlessly organize tasks, set priorities, and boost productivity with a user-friendly interface designed to simplify your daily routine. Stay on top of your goals and never miss a beat – your to-dos, your way.
           </p>
-          <button className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95">
-            Find a class
-          </button>
+          <Link to={"/login"} className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95">
+            Let’s Explore
+          </Link>
         </div>
         <ShuffleGrid />
       </section>
