@@ -11,7 +11,7 @@ const TodoList = ({
     console.log(todos);
 
     return (
-      <div className="container">
+      <div className="flex flex-wrap containerd grid md:grid-cols-3 grid-cols-1">
         <Droppable droppableId="TodosList">
           {(provided, snapshot) => (
             <div

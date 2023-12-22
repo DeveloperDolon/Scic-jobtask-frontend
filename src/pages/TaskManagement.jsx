@@ -8,6 +8,7 @@ import {
   SiCss3,
 } from "react-icons/si";
 import { AuthContext } from "../Provider/AuthProvider";
+import App from "../App";
 
 
 const SideNav = () => {
@@ -67,7 +68,9 @@ const TaskManagement = () => {
         <SideNav />
         <div className="w-full">
           <div className="h-fit m-4 rounded border-2 border-dashed border-slate-600  md:text-2xl text-lg font-bold text-black text-center py-5">Manage Your Tasks</div>
-          <div className="h-[400px] m-4 rounded border-2 border-dashed border-slate-600 "></div>
+          <div className="h-fit m-4 rounded border-2 border-dashed border-slate-600 relative">
+            <App></App>
+          </div>
         </div>
       </div>
     );

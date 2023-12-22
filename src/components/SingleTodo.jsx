@@ -56,7 +56,7 @@ const SingleTodo = ({ index, todo, todos, setTodos }) => {
             ) : (
               <span className="todos__single--text">{todo.todo}</span>
             )}
-            <div>
+            <div className="flex flex-wrap gap-1">
               <span
                 className="icon"
                 onClick={() => {

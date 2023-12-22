@@ -6,7 +6,7 @@ const InputField = ({ todo, setTodo, handleAdd }) => {
 
   return (
     <form
-      className="input"
+      className="inputd"
       onSubmit={(e) => {
         handleAdd(e);
         inputRef.current?.blur();
