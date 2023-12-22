@@ -5,6 +5,7 @@ import MainLayout from "../layout/MainLayout";
 import HomePage from "../pages/HomePage";
 import SignPage from "../pages/SignPage";
 import SignUp from "../pages/SignUp";
+import TaskManagement from "../pages/TaskManagement";
 
 const MainRouter = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const MainRouter = createBrowserRouter([
             {
                 path: "/",
                 element: <HomePage></HomePage>
+            },
+            {
+                path: "/task-management",
+                element: <TaskManagement></TaskManagement>
             }
         ]
     },
