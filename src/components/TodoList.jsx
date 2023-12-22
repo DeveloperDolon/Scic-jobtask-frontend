@@ -21,7 +21,7 @@ const TodoList = ({
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
-              <span className="todos__heading">TO-DO</span>
+              <span className="todos__heading w-full">TO-DO</span>
               {todos?.map((todo, index) => (
                 <SingleTodo
                   index={index}

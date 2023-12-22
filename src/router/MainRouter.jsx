@@ -6,6 +6,7 @@ import HomePage from "../pages/HomePage";
 import SignPage from "../pages/SignPage";
 import SignUp from "../pages/SignUp";
 import TaskManagement from "../pages/TaskManagement";
+import PrivateRouter from "./PrivateRouter";
 
 const MainRouter = createBrowserRouter([
     {
@@ -18,7 +19,7 @@ const MainRouter = createBrowserRouter([
             },
             {
                 path: "/task-management",
-                element: <TaskManagement></TaskManagement>
+                element: <PrivateRouter><TaskManagement></TaskManagement></PrivateRouter>
             }
         ]
     },

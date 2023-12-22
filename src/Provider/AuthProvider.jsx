@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import app from "../firebase.config";
+import axios from "axios";
 
 
 export const AuthContext = createContext();
@@ -12,6 +13,7 @@ const AuthProvider = ({children}) => {
     const [loading, setLoading] = useState(true);
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
+    const mainUrl = "http://localhost:5000";
     
     const createUser = (email, password) => {
         setLoading(true);
@@ -38,10 +40,13 @@ const AuthProvider = ({children}) => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
             if(currentUser) {
                setUser(currentUser);
-               // axios.post(`${mainUrl}/api/v1/jwt`, {user: currentUser?.email}, 
-            //     {withCredentials: true}
-            //     ).then(res => console.log(res.data))
-            //     .catch(err => console.log(err))
+               setLoading(false)
+               axios.post(`${mainUrl}/jwt`, {user: currentUser?.email}, 
+                {withCredentials: true}
+                ).then(res => console.log(res.data))
+                .catch(err => console.log(err))
+            } else {
+                setLoading(false)
             }
         })
 
@@ -57,7 +62,8 @@ const AuthProvider = ({children}) => {
         loginWithEmailAndPassword,
         googleLogin,
         logOut,
-        setUser
+        setUser,
+        mainUrl
     }
 
     return (
