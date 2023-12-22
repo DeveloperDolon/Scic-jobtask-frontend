@@ -1,9 +1,10 @@
+import ShuffleHero from "../components/HeroSection/SuffleHero";
 
 
 const HomePage = () => {
     return (
-        <div>
-            Hello world!            
+        <div className="container mx-auto">
+            <ShuffleHero></ShuffleHero>      
         </div>
     );
 };
