@@ -4,14 +4,16 @@ import { Droppable } from "react-beautiful-dnd";
 const TodoList = ({
     todos,
     setTodos,
+    setOngoingTodos,
     CompletedTodos,
     setCompletedTodos,
+    ongoingTodos
   }) => {
 
     console.log(todos);
 
     return (
-      <div className="flex flex-wrap containerd grid md:grid-cols-3 grid-cols-1">
+      <div className=" containerd grid md:grid-cols-3 grid-cols-1">
         <Droppable droppableId="TodosList">
           {(provided, snapshot) => (
             <div
@@ -33,7 +35,7 @@ const TodoList = ({
             </div>
           )}
         </Droppable>
-        <Droppable droppableId="TodosRemove">
+        <Droppable droppableId="TodosOngoing">
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}
@@ -43,13 +45,13 @@ const TodoList = ({
               }`}
             >
               <span className="todos__heading">Ongoing</span>
-              {CompletedTodos?.map((todo, index) => (
+              {ongoingTodos?.map((todo, index) => (
                 <SingleTodo
                   index={index}
-                  todos={CompletedTodos}
+                  todos={ongoingTodos}
                   todo={todo}
                   key={index}
-                  setTodos={setCompletedTodos}
+                  setTodos={setOngoingTodos}
                 />
               ))}
               {provided.placeholder}
@@ -57,7 +59,7 @@ const TodoList = ({
           )}
         </Droppable>
         
-        <Droppable droppableId="TodosRemove">
+        <Droppable droppableId="TodosComplete">
           {(provided, snapshot) => (
             <div
               ref={provided.innerRef}

@@ -48,7 +48,7 @@ const SingleTodo = ({ index, todo, todos, setTodos }) => {
               <input
                 value={editTodo}
                 onChange={(e) => setEditTodo(e.target.value)}
-                className="todos__single--text"
+                className="todos__single--text text-black"
                 ref={inputRef}
               />
             ) : todo.isDone ? (

@@ -64,8 +64,8 @@ const NavItem = ({ children, selected, id, setSelected }) => {
 
 const TaskManagement = () => {
     return (
-      <div className=" text-slate-100 flex">
-        <SideNav />
+      <div className=" text-slate-100 flex container mx-auto">
+        {/* <SideNav /> */}
         <div className="w-full">
           <div className="h-fit m-4 rounded border-2 border-dashed border-slate-600  md:text-2xl text-lg font-bold text-black text-center py-5">Manage Your Tasks</div>
           <div className="h-fit m-4 rounded border-2 border-dashed border-slate-600 relative">
