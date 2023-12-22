@@ -1,22 +1,58 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import logo from "../assets/todo-logo.png";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../Provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
     const [showPass, setShowPass] = useState(false);
+    const { createUser } = useContext(AuthContext);
     const handleShowPassword = () => {
         setShowPass(!showPass);
     }
-
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm();
 
-    const onSubmit = (data) => console.log(data);
-
+    
+    const onSubmit = (data) => {
+        
+        createUser(data.email, data.password)
+            .then((res) => {
+                updateProfile(res.user, {
+                    displayName: data.name,
+                    photoURL: data?.photo
+                }).then(() => {
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "You clicked the button!",
+                        icon: "success"
+                      });
+                    navigate("/");
+                }).catch((err) => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: err?.message,
+                        footer: '<a href="#">Why do I have this issue?</a>'
+                      });
+                });
+            })
+            .catch(err => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: err?.message,
+                    footer: '<a href="#">Why do I have this issue?</a>'
+                  });
+            });
+    }
     return (
         <div className="h-full bg-gradient-to-tl from-green-400 to-indigo-900 w-full py-16 px-4">
             <div className="flex flex-col items-center justify-center">
