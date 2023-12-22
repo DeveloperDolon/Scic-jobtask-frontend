@@ -1,9 +1,11 @@
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import InputField from "./components/InputField";
 import TodoList from "./components/TodoList";
 import { DragDropContext } from "react-beautiful-dnd";
+import axios from "axios";
+import { AuthContext } from "./Provider/AuthProvider";
 
 function App() {
 
@@ -11,12 +13,21 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [CompletedTodos, setCompletedTodos] = useState([]);
   const [ongoingTodos, setOngingTodos] = useState([]);
+  const {mainUrl, user} = useContext(AuthContext);
 
   const handleAdd = (e) => {
     e.preventDefault();
+    const timeID = Date.now();
+    axios.post(`${mainUrl}/tasks`, {
+      id: timeID,
+      todo:todo,
+      userEmail : user?.email
+    })
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
 
     if (todo) {
-      setTodos([...todos, { id: Date.now(), todo, isDone: false }]);
+      setTodos([...todos, { id: timeID, todo, isDone: false }]);
       setTodo("");
     }
   };

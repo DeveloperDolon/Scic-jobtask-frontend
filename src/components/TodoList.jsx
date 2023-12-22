@@ -1,5 +1,8 @@
+import { useContext, useEffect } from "react";
 import SingleTodo from "./SingleTodo";
 import { Droppable } from "react-beautiful-dnd";
+import axios from "axios";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const TodoList = ({
     todos,
@@ -9,8 +12,14 @@ const TodoList = ({
     setCompletedTodos,
     ongoingTodos
   }) => {
+    const {mainUrl, user} = useContext(AuthContext);
 
-    console.log(todos);
+    useEffect(() => {
+      axios.get(`${mainUrl}/tasks?email=${user?.email}`, {withCredentials: true})
+      .then(res => {
+        setTodos(res.data);
+      }).catch(err => console.log(err.message));
+    }, []);
 
     return (
       <div className=" containerd grid md:grid-cols-3 grid-cols-1">
